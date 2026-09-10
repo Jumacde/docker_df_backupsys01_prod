@@ -13,7 +13,7 @@ set -a
 source .env
 set +a
 
-# run command docker using by the docker file
+# build command
 docker buildx build \
 	--build-context backupsys01_prod="${BACKUPSYS01_PATH}" \
 	-t backupsys_server_test \
