@@ -29,4 +29,6 @@ sudo ./docker_build.sh
 2. run command dockers
 sudo docker run -d --name backupsys_server --restart unless-stopped backupsys_server_test
 
-
+-----------
+What i do next
+1. decice mount in the ubuntu container.
