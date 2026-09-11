@@ -25,8 +25,8 @@ docker buildx build \
 	-f Dockerfile \
 	.
 # stop and remove the docker container.
-sudo docker stop backupsys_server 2>dev/null
-sudo docker rm backupsys_server 2>dev/null
+docker stop backupsys_server 2>/dev/null
+docker rm backupsys_server 2>/dev/null
 
 # start docker and usb mount.
 docker run -d \

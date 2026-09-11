@@ -27,10 +27,8 @@ helper file => docker_build.sh:
 5. mount backup devieces.
 ----
 Commands
-1. build docker image.
+- build docker image.
 sudo chmod +x docker_build.sh
 sudo ./docker_build.sh
 
-2. run command dockers
-sudo docker run -d --name backupsys_server --restart unless-stopped backupsys_server_test
 
