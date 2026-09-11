@@ -24,11 +24,14 @@ docker buildx build \
 	-t backupsys_server_test \
 	-f Dockerfile \
 	.
+# stop and remove the docker container.
+sudo docker stop backupsys_server 2>dev/null
+sudo docker rm backupsys_server 2>dev/null
 
 # start docker and usb mount.
 docker run -d \
-	-- name backupsys_server \
-	-- restart unless-stopped \
+	--name backupsys_server \
+	--restart unless-stopped \
 	-v "${DEVICE1}:${DEVICE1}" \
 	-v "${DEVICE2}:${DEVICE2}" \
 	backupsys_server_test

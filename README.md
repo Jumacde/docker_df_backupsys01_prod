@@ -17,12 +17,14 @@ Dockerfile:
 2. copy bash project path
 3. run bash project
 
-helper file:
+helper file => docker_build.sh:
 1. read .env on the docker and bash project
 - backup decice data is got form .env in the bash project.
 
 2. build command by Dockerfile.
-3. run docker 
+3. stop and remove already started container.
+4. run docker.
+5. mount backup devieces.
 ----
 Commands
 1. build docker image.
