@@ -18,8 +18,11 @@ Dockerfile:
 3. run bash project
 
 helper file:
-1. set command to read .env
+1. read .env on the docker and bash project
+- backup decice data is got form .env in the bash project.
+
 2. build command by Dockerfile.
+3. run docker 
 ----
 Commands
 1. build docker image.
@@ -29,6 +32,3 @@ sudo ./docker_build.sh
 2. run command dockers
 sudo docker run -d --name backupsys_server --restart unless-stopped backupsys_server_test
 
------------
-What i do next
-1. decice mount in the ubuntu container.

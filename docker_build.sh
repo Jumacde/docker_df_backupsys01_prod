@@ -1,17 +1,22 @@
 #!/bin/bash
-ENV_FILE="$(dirname "$0")/.env"
-# check and get log path
-if [ -f "$ENV_FILE" ]; then
-        export $(grep -v '^#' "$ENV_FILE" | xargs)
+
+# check .env file in the docker project
+ENV_DOCKER="$(dirname "$0")/.env"
+if [ -f "$ENV_DOCKER" ]; then
+        export $(grep -v '^#' "$ENV_DOCKER" | xargs)
 else
-        echo "ERROR: .env file not found."
+        echo "ERROR: .env for docker project not found."
         exit 1 # if .env file not found end this script.
 fi
 
-# to send a directry path to the Dockerfile
-set -a
-source .env
-set +a
+# check .env file in the bash project
+ENV_BASH="$(dirname "$0")/.env"
+if [ -f "$ENV_BASH" ]; then
+	export $(grep -v '^#' "$ENV_BASH" | xargs)
+else
+	echo "ERROR: .env for bash project not found."
+	exit 1
+fi
 
 # build command
 docker buildx build \
@@ -19,3 +24,11 @@ docker buildx build \
 	-t backupsys_server_test \
 	-f Dockerfile \
 	.
+
+# start docker and usb mount.
+docker run -d \
+	-- name backupsys_server \
+	-- restart unless-stopped \
+	-v "${DEVICE1}:${DEVICE1}" \
+	-v "${DEVICE2}:${DEVICE2}" \
+	backupsys_server_test
