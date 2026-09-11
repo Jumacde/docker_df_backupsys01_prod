@@ -31,4 +31,6 @@ Commands
 sudo chmod +x docker_build.sh
 sudo ./docker_build.sh
 
+- after runnig container
+sudo docker exec -it backupsys_server bash
 

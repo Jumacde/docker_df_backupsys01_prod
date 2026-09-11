@@ -10,9 +10,9 @@ else
 fi
 
 # check .env file in the bash project
-ENV_BASH="$(dirname "$0")/.env"
+ENV_BASH="${BACKUPSYS01_PATH}/scripts/.env"
 if [ -f "$ENV_BASH" ]; then
-	export $(grep -v '^#' "$ENV_BASH" | xargs)
+	 export $(grep -v '^#' "$ENV_BASH" | xargs)
 else
 	echo "ERROR: .env for bash project not found."
 	exit 1
@@ -27,6 +27,9 @@ docker buildx build \
 # stop and remove the docker container.
 docker stop backupsys_server 2>/dev/null
 docker rm backupsys_server 2>/dev/null
+
+# show mount statue on the terminal
+echo "DEVICE1=${device_dir1} DEVICE2=${device_dir2}"
 
 # start docker and usb mount.
 docker run -d \
